@@ -9,6 +9,20 @@
   "feedback": {
     "thumbsRating": true
   },
+  "metadata": {
+    "og:image": "https://res.cloudinary.com/dko7n7x16/image/upload/v1721524114/Beeprs_Header-02_nvpqjb.jpg",
+    "og:site_name": "Bleeprs Communications",
+    "og:description": "Bleeprs API Documentation & Guide",
+    "og:url": "https://docs.bleeprs.com",
+    "og:locale": "en",
+    "og:logo": "https://res.cloudinary.com/dko7n7x16/image/upload/v1719298807/logo_kogluj.png",
+    "og:twitter:title": "Bleeprs",
+    "og:twitter:description": "Bleeprs API Documentation & Guide",
+    "og:twitter:url": "https://docs.bleeprs.com",
+    "og:twitter:image": "https://res.cloudinary.com/dko7n7x16/image/upload/v1721524114/Beeprs_Header-02_nvpqjb.jpg",
+    "og:twitter:site": "https://x.com/bleeprs",
+    "og:title": "Bleeprs Communications"
+  },
   "colors": {
     "primary": "#FFC82C",
     "light": "#FFC82C",
