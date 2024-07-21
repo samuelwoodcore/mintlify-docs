@@ -46,8 +46,8 @@
   "anchors": [
     {
       "name": "Community",
-      "icon": "whatsapp",
-      "url": "#"
+      "icon": "slack",
+      "url": "https://join.slack.com/t/bleeprs/shared_invite/zt-2mxsqjzvr-EfHv72aNj_3uvyQBU3ONGQ"
     },
     {
       "name": "API Status",
