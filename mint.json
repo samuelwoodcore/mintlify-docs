@@ -6,6 +6,9 @@
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
+  "feedback": {
+    "thumbsRating": true
+  },
   "colors": {
     "primary": "#FFC82C",
     "light": "#FFC82C",
