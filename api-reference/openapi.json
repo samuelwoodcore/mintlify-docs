@@ -1,94 +1,48 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+    "title": "Bleeprs API Specification 0.1",
+    "version": "1.0.0",
+    "contact": {}
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://core.bleeprs.com/api/"
     }
   ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
+
   "paths": {
-    "/plants": {
+    "/getSenderIds": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "tags": ["Messages"],
+        "summary": "Sender ID",
+        "description": "Sender ID",
+        "operationId": "senderId",
         "parameters": [
           {
-            "name": "limit",
+            "name": "page",
             "in": "query",
-            "description": "The maximum number of results to return",
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "example": "0"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "example": "5"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "ddddd",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "type": "object"
                 }
               }
             }
@@ -96,100 +50,482 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/sendMessage": {
+      "post": {
+        "tags": ["Messages"],
+        "summary": "Send Message",
+        "description": "Send Message",
+        "operationId": "sendMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "emails": {
+                    "type": "array",
+                    "description": "A copy of this message can be sent to these email addresses. **(attarcts extra cost)**",
+                    "items": {
+                      "type": "string",
+                      "example": "sam@bleeprs.com"
+                    },
+                    "example": ["sam@bleeprs.com", "john@bleeprs.com"]
+                  },
+                  "isBulk": {
+                    "type": "boolean",
+                    "description": "`Enable` or `Disable` if this meessage is bulk or not",
+                    "example": false
+                  },
+                  "messageBody": {
+                    "type": "string",
+                    "description": "Message body with expected number of characters",
+                    "example": "Hey there"
+                  },
+                  "phoneBookId": {
+                    "type": "number",
+                    "description": "Phonebook ID must be passed if `isBulk` is set to `true`",
+                    "example": 4
+                  },
+                  "receiverNumber": {
+                    "type": "string",
+                    "description": "Target phone number for delivery",
+                    "example": "2345678909999"
+                  },
+                  "senderId": {
+                    "type": "string",
+                    "description": "Pre-approved sender id based on the region and route",
+                    "example": "SUPERMAN"
+                  },
+                  "sendtoEmail": {
+                    "type": "boolean",
+                    "description": "If message should be sent to email or not",
+                    "example": true
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The subject of the email if `sendtoEmail` is set to `true`",
+                    "example": "Thanks for Applying"
+                  },
+                  "template": {
+                    "type": "object",
+                    "description": "This section becomes effective if `templateInUse` is set to `true`",
+                    "properties": {
+                      "indexes": {
+                        "type": "array",
+                        "description": "The required parameters for encapsulating the template",
+                        "items": {
+                          "type": "string",
+                          "example": "Samuel"
+                        },
+                        "example": ["Samuel", "Nigeria"]
+                      },
+                      "templateId": {
+                        "type": "string",
+                        "description": "The template ID",
+                        "example": "BLR_TID_IbZprJAfeSwsBdMJBfkv"
+                      }
+                    }
+                  },
+                  "templateInUse": {
+                    "type": "boolean",
+                    "description": "Used if the message should be sent using a template",
+                    "example": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/sendEvidence": {
+      "post": {
+        "tags": ["Evidence"],
+        "summary": "Send Evidence",
+        "description": "Send Evidence",
+        "operationId": "sendEvidence",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "emails": {
+                    "type": "array",
+                    "description": "A copy of this message can be sent to these email addresses",
+                    "items": {
+                      "type": "string",
+                      "example": "sam@bleep,com"
+                    },
+                    "example": ["sam@bleep,com"]
+                  },
+                  "numberOfDigits": {
+                    "type": "number",
+                    "description": "The number of digits to be sent as an OTP **[6 - 100]**",
+                    "example": 8
+                  },
+                  "receiverNumber": {
+                    "type": "string",
+                    "description": "Target phone number for delivery",
+                    "example": "2345678909999"
+                  },
+                  "seconds": {
+                    "type": "number",
+                    "description": "Duration before expiry in seconds",
+                    "example": 1000
+                  },
+                  "senderId": {
+                    "type": "string",
+                    "description": "Pre-approved sender id based on the region and route",
+                    "example": "SUPERMAN"
+                  },
+                  "sendtoEmail": {
+                    "type": "boolean",
+                    "description": "If message should be sent to email or not",
+                    "example": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/confirmEvidence": {
+      "post": {
+        "tags": ["Evidence"],
+        "summary": "Confirm Evidence",
+        "description": "Confirm Evidence",
+        "operationId": "confirmEvidence",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "otp": {
+                    "type": "string",
+                    "description": "The OTP sent to target phone number",
+                    "example": "83419379"
+                  },
+                  "reference": {
+                    "type": "string",
+                    "description": "The reference number returned after the message was sent",
+                    "example": "CkxhOql2g7AGzJhz3POZ"
+                  }
+                }
+              },
+              "examples": {
+                "Confirm Evidence": {
+                  "value": {
+                    "otp": "83419379",
+                    "reference": "CkxhOql2g7AGzJhz3POZ"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/MSQ/{reference}": {
+      "get": {
+        "tags": ["Insight"],
+        "summary": "MSQ",
+        "description": "MSQ",
+        "operationId": "msq",
         "parameters": [
           {
-            "name": "id",
+            "name": "reference",
             "in": "path",
-            "description": "ID of plant to delete",
+            "description": "Reference of message to search status",
             "required": true,
             "schema": {
-              "type": "integer",
+              "type": "string",
               "format": "int64"
             }
           }
         ],
+
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/messageHistory": {
+      "get": {
+        "tags": ["Insight"],
+        "summary": "History",
+        "description": "History",
+        "operationId": "history",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "0"
+            }
           },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+          {
+            "name": "perPage",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "5"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/accountBalance": {
+      "get": {
+        "tags": ["Insight"],
+        "summary": "Account Balance",
+        "description": "Account Balance",
+        "operationId": "accountBalance",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getPhonebook": {
+      "get": {
+        "tags": ["Phonebook"],
+        "summary": "Phonebook",
+        "description": "Phonebook",
+        "operationId": "phonebook",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "0"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "3"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/craetePhonebook": {
+      "post": {
+        "tags": ["Phonebook"],
+        "summary": "Create Phonebook",
+        "description": "Create Phonebook",
+        "operationId": "createPhonebook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the phone book",
+                    "example": "Nothing"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the phone book",
+                    "example": "Sample Book 1"
+                  }
                 }
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/createContact": {
+      "post": {
+        "tags": ["Phonebook"],
+        "summary": "Create Contacts",
+        "description": "Create Contacts",
+        "operationId": "createContacts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "",
+                      "example": "Simpu"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "",
+                      "example": "434576565446"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Create Contacts": {
+                  "value": [
+                    {
+                      "name": "Simpu",
+                      "phoneNumber": "434576565446"
+                    },
+                    {
+                      "name": "Dalu",
+                      "phoneNumber": "435425324"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/getTemplates": {
+      "get": {
+        "tags": ["Templates"],
+        "summary": "Templates",
+        "description": "Templates",
+        "operationId": "templates",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "0"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "5"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/createTemplates": {
+      "post": {
+        "tags": ["Templates"],
+        "summary": "Create Templates",
+        "description": "Create Templates",
+        "operationId": "createTemplates",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "description": "The standard body with possible interpolated fields",
+                    "example": "My name is {{1}} and i am from {{2}}"
+                  },
+                  "indexes": {
+                    "type": "array",
+                    "description": "The integers in a format of a string in **{{1}}** from body",
+                    "items": {
+                      "type": "string",
+                      "description": "",
+                      "example": "1"
+                    },
+                    "example": ["1", "2"]
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Template name",
+                    "example": "Welcome Message"
+                  },
+                  "slug": {
+                    "type": "string",
+                    "description": "Template slug",
+                    "example": "WLG"
+                  },
+                  "useCase": {
+                    "type": "string",
+                    "description": "Template Use cases seprated by comma",
+                    "example": "business"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
           }
         }
       }
     }
   },
   "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer"
       }
     }
-  }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
 }

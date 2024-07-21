@@ -1,0 +1,15 @@
+---
+title: "Create Templates"
+description: "Create a dynamic message template"
+openapi: "POST /createTemplates"
+---
+
+Variables can be used on all templates built with Content Template Builder. There are a few differing rules for variables sent in a user and business initiated sessions\.
+
+#### Some Template Rules
+
+Content variables need to be in sequential order. They can be is non-sequential order within a template, but variable definitions should not skip over integers.
+
+Not Allowed: `body: Hi {{1}}, Your flight will depart from gate {{3}}. Please reply Stop to unsubscribe.`
+
+Allowed: `body: Hi {{1}}, Your flight will depart from gate {{2}}. Please reply Stop to unsubscribe.`

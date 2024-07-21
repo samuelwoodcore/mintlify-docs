@@ -1,91 +1,88 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Bleeprs Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#FFC82C",
+    "light": "#FFC82C",
+    "dark": "#FFC82C",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#FFC82C",
+      "to": "#FFC82C"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:tech@bleeprs.com"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.bleeprs.com"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
+
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "icon": "whatsapp",
+      "url": "#"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "API Status",
+      "icon": "signal",
+      "url": "#"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "development"
-      ]
+      "pages": ["introduction", "authentication", "webhook", "product"]
     },
     {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
+      "group": "Messaging",
       "pages": [
         "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/sendmessage"
+      ]
+    },
+    {
+      "group": "Evidence",
+      "pages": [
+        "api-reference/endpoint/sendevidence",
+        "api-reference/endpoint/confirmevidence"
+      ]
+    },
+    {
+      "group": "Insights",
+      "pages": [
+        "api-reference/endpoint/msq",
+        "api-reference/endpoint/messagehistory",
+        "api-reference/endpoint/accountbalance"
+      ]
+    },
+    {
+      "group": "Phonebook",
+      "pages": [
+        "api-reference/endpoint/getphonebook",
+        "api-reference/endpoint/createphonebook",
+        "api-reference/endpoint/createcontact"
+      ]
+    },
+    {
+      "group": "Template",
+      "pages": [
+        "api-reference/endpoint/gettemplate",
+        "api-reference/endpoint/createtemplate"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://x.com/bleeprs",
+    "linkedin": "https://www.linkedin.com/company/bleeprs"
   }
 }

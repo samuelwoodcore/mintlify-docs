@@ -1,71 +1,60 @@
 ---
 title: Introduction
-description: 'Welcome to the home of your new documentation'
+description: "Welcome to Bleeprs Communications documentation. Explore ways to utilize our resource programmatically"
+icon: "door-open"
+iconType: "solid"
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
-  alt="Hero Dark"
-/>
+### Base URL
 
-## Setting up
+The Bleeprs API is built on REST principles. We enforce HTTPS for every request to improve data security, initegrity and privacy. The API does not support HTTP requests.
 
-The first step to world-class documentation is setting up your editing environments.
+All request should be sent to the following base URL:
 
-<CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+```
+https://api.bleeprs.com
+```
 
-## Make it yours
+### Authentication
 
-Update your docs to your brand and add valuable content for the best user conversion.
+To authenticate your requests, you must add an Authorization header with the contents of the header being Bearer {token} where {token} is your API key.
 
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+```
+Authorization: Bearer {token}
+```
+
+### Response codes
+
+Bleeprs uses standard HTTP codes to indicate the success or failure of requests.
+
+In general, `2XX` HTTP codes mean your request was successful, `4XX` codes are for user-related failures, and `5XX` codes are for internal server issues.
+
+### Response Codes
+
+| Status | Description                            |
+| ------ | -------------------------------------- |
+| `200`  | Succesful Request                      |
+| `400`  | Check is the parameters were correct   |
+| `401`  | The API key is missing or incorrect    |
+| `403`  | A process was rejected                 |
+| `404`  | A resource was not found               |
+| `429`  | The rate limit was exceeded            |
+| `5XX`  | Internal server error, contact support |
+
+### Rate limits
+
+The maximum number of API requests that users can send is **20 per second**. The headers below will be sent with every response in accordance with the IETF standard:
+
+| Header name             | Description                                         |
+| ----------------------- | --------------------------------------------------- |
+| `X-RateLimit-Limit`     | Maximum number of requests allowed within a window. |
+| `X-RateLimit-Remaining` | How many requests you have left within the window.  |
+| `X-RateLimit-Reset`     | The timestamp at which the rate limit will reset.   |
+
+When the limit is reached, you will receive a `429` HTTP error code.
+
+To prevent this, we recommend reducing the rate at which you send requests. This can be done by introducing a queue mechanism or reducing the number of concurrent requests per second. If you have specific requirements, **contact support** to request a rate increase.
+
+### Compliance
+
+Before sending any messages with Bleeprs, please ensure that you have read and understood our Messaging Policy and our Compliance overview. We reserve the right to suspend your account or block your messaging services if any misuse is reported.

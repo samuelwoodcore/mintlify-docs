@@ -1,0 +1,54 @@
+---
+title: "Authentication"
+description: "Gudie on bleeprs authentication and security"
+icon: "shield"
+iconType: "solid"
+---
+
+## Security
+
+This section will guide you through accessing your Bleeprs resources, and the available security operations. Here you will learn how authentication, and user verification, work on Bleeprs.
+
+When you sign up, Pooler creates API keys for you to use when making and verifying requests. You can find these keys on your dashboard. There are two types of API keys on Pooler:
+
+### Authentication
+
+<AccordionGroup>
+  <Accordion icon="key" title="Public Keys">
+    This key exists today but has been disbaled on the system globally. This key
+    serves as a way to authenticate public communications on your Bleeprs
+    account from third-party systems without any security risk. This key starts
+    with `pk_******`
+  </Accordion>
+  <Accordion icon="shield-halved" title="Private Keys">
+    This key is your primary security key used for access your account via api
+    for all possible resource communications you find on this guide. The key
+    starts with `sk_***`
+  </Accordion>
+</AccordionGroup>
+
+### Getting Your Keys
+
+You api keys are the most simple resources to find on the Bleeprs Intuituve platform, simply login to your dashboard and see them like so.
+
+<Frame>
+  <img
+    className="block dark:hidden"
+    src="/images/api_keys.png"
+    alt="Api Kyes Guide"
+  />
+</Frame>
+<Frame>
+  <img
+    className="hidden dark:block"
+    src="/images/api_keys.png"
+    alt="Hero Dark"
+  />
+</Frame>
+
+<Warning>
+  Ensure to safeguard your API keys and avoid any disclosure or exposing it in
+  any way.
+</Warning>
+
+Simply click the copy button and happy programing! 🚀

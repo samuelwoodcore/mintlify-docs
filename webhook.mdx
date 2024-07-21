@@ -1,0 +1,87 @@
+---
+title: "Webhooks"
+description: "Guide on Bleeprs webhook event communications"
+icon: "webhook"
+iconType: "solid"
+---
+
+In addition to email notification of transactions, webhook is a fast and cost-effective way to manage system-to-system communications. Below are the supported events that trigger a webhook on Bleeprs.
+
+### Authentication
+
+When you create a webhook URL on your dashboard, the system will generate a unique secret token. This token will be sent as a `X-Webhook-Token` header with each request. You should verify the token to ensure that the request is coming from Bleeprs.
+
+### Events
+
+<Tabs>
+  <Tab title="Processing">
+    📣 `event.processing` Is the first event you recieve for any message sent.
+
+```json
+{
+  "event": "event.processing",
+  "data": {
+    "id": 23,
+    "messageReference": "BLPRS_MG_****",
+    "completed": false,
+    "amount": "0.5",
+    "currency": "USD"
+  }
+}
+```
+
+  </Tab>
+  <Tab title="Delivered">
+    📣 `event.delivered` Is the next event if the message was delivered
+```json
+{
+  "event": "event.delivered",
+  "data": {
+    "id": 23,
+    "messageReference": "BLPRS_MG_****",
+    "completed": true,
+    "amount": "0.5",
+    "currency": "USD"
+  }
+}
+```
+  </Tab>
+  <Tab title="Failed">
+    📵 `event.failed` Is the next event if the message was delivery failed.
+    Retry usually happens twice before the message is considered failed
+    completely
+ ```json
+{
+  "event": "event.failed",
+  "data": {
+    "id": 23,
+    "messageReference": "BLPRS_MG_****",
+    "completed": false,
+    "amount": "0.5",
+    "currency": "USD"
+  }
+}
+```
+  </Tab>
+</Tabs>
+
+### Configure Webhook
+
+To get webhook events and actions notifications, you are required to provide a webhook URL which these notifications will be sent. Follow the steps below to setup a webhook on your Pooler account:
+
+Go to **profile/setting** and update the Webhook hook url
+
+<Frame>
+  <img src="/images/webhook.png" />
+</Frame>
+
+Enter your webhook URL and click on the Submit button.
+
+<Info>
+  Webhooks are very important for notifying you about the status of your
+  delivery
+</Info>
+
+### Retry policy
+
+If our attempt to deliver the POST request to your webhook URL fails with an HTTP response that is not `2XX`, we will retry the request up to **6 times** with a **60 second** delay between each attempt. With each subsequent failure, the wait time will double. If after all attempts the webhook is still not acknowledged, no further attempts will be made.
