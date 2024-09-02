@@ -89,12 +89,12 @@
                   "receiverNumber": {
                     "type": "string",
                     "description": "Target phone number for delivery",
-                    "example": "2345678909999"
+                    "example": "15678909999"
                   },
                   "senderId": {
                     "type": "string",
                     "description": "Pre-approved sender id based on the region and route",
-                    "example": "SUPERMAN"
+                    "example": "SUPERHUMAN"
                   },
                   "sendtoEmail": {
                     "type": "boolean",
@@ -117,7 +117,7 @@
                           "type": "string",
                           "example": "Samuel"
                         },
-                        "example": ["Samuel", "Nigeria"]
+                        "example": ["Benson", "Germany"]
                       },
                       "templateId": {
                         "type": "string",
