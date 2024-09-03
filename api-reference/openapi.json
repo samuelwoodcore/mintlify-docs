@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://core.bleeprs.com/api/"
+      "url": "https://api.bleeprs.com/api/"
     }
   ],
 
