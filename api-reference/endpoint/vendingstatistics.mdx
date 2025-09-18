@@ -1,0 +1,204 @@
+---
+title: "View Statistics"
+api: "GET /statistics"
+description: "Get vending statistics and account information"
+---
+
+## Overview
+
+Retrieve comprehensive statistics about your vending activities, including account balance, transaction metrics, and performance data.
+
+## Request
+
+<RequestExample>
+```bash
+curl --location 'https://api.bleeprs.com/api/statistics' \
+--header 'Authorization: Bearer YOUR_API_KEY'
+```
+</RequestExample>
+
+## Parameters
+
+No parameters required for this endpoint.
+
+## Response
+
+<ResponseField name="gatewayStatus" type="string">
+  Status code indicating success ("00") or error
+</ResponseField>
+
+<ResponseField name="gatewayMessage" type="string">
+  Human-readable status message
+</ResponseField>
+
+<ResponseField name="requestReference" type="string">
+  Unique reference ID for tracking this request
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Statistics and account information
+</ResponseField>
+
+### Data Object Fields
+
+<ResponseField name="account_balance" type="object">
+  Account balance information
+</ResponseField>
+
+<ResponseField name="account_balance.amount" type="string">
+  Current account balance (e.g., "N7450.00")
+</ResponseField>
+
+<ResponseField name="account_balance.available_for" type="string">
+  What the balance is available for (e.g., "vending")
+</ResponseField>
+
+<ResponseField name="account_balance.currency" type="string">
+  Currency code (e.g., "NGN")
+</ResponseField>
+
+<ResponseField name="account_balance.last_updated" type="string">
+  Last balance update timestamp
+</ResponseField>
+
+<ResponseField name="period" type="object">
+  Time period information for statistics
+</ResponseField>
+
+<ResponseField name="period.current_week_start" type="string">
+  Start date of current week
+</ResponseField>
+
+<ResponseField name="period.current_week_end" type="string">
+  End date of current week
+</ResponseField>
+
+<ResponseField name="period.previous_week_start" type="string">
+  Start date of previous week
+</ResponseField>
+
+<ResponseField name="period.previous_week_end" type="string">
+  End date of previous week
+</ResponseField>
+
+<ResponseField name="statistics" type="object">
+  Transaction statistics
+</ResponseField>
+
+<ResponseField name="statistics.successful" type="object">
+  Successful transaction metrics
+</ResponseField>
+
+<ResponseField name="statistics.successful.value" type="number">
+  Number of successful transactions
+</ResponseField>
+
+<ResponseField name="statistics.successful.rate" type="string">
+  Success rate compared to previous week
+</ResponseField>
+
+<ResponseField name="statistics.successful.is_positive" type="boolean">
+  Whether the trend is positive
+</ResponseField>
+
+<ResponseField name="statistics.failed" type="object">
+  Failed transaction metrics
+</ResponseField>
+
+<ResponseField name="statistics.failed.value" type="number">
+  Number of failed transactions
+</ResponseField>
+
+<ResponseField name="statistics.failed.rate" type="string">
+  Failure rate compared to previous week
+</ResponseField>
+
+<ResponseField name="statistics.failed.is_positive" type="boolean">
+  Whether the trend is positive (false for failures)
+</ResponseField>
+
+<ResponseField name="total_amount" type="object">
+  Total transaction amount metrics
+</ResponseField>
+
+<ResponseField name="total_amount.value" type="string">
+  Total amount in current period (e.g., "N3850.00")
+</ResponseField>
+
+<ResponseField name="total_amount.change" type="string">
+  Percentage change from previous week
+</ResponseField>
+
+<ResponseField name="total_amount.is_positive" type="boolean">
+  Whether the trend is positive
+</ResponseField>
+
+<ResponseField name="total_transactions" type="object">
+  Total transaction count metrics
+</ResponseField>
+
+<ResponseField name="total_transactions.value" type="number">
+  Total number of transactions
+</ResponseField>
+
+<ResponseField name="total_transactions.change" type="string">
+  Percentage change from previous week
+</ResponseField>
+
+<ResponseField name="total_transactions.is_positive" type="boolean">
+  Whether the trend is positive
+</ResponseField>
+
+## Example Response
+
+```json
+{
+  "gatewayStatus": "00",
+  "gatewayMessage": "Successfully Processed",
+  "requestReference": "ESzHw13F3Xa93uizdop6",
+  "data": {
+    "account_balance": {
+      "amount": "N7450.00",
+      "available_for": "vending",
+      "currency": "NGN",
+      "last_updated": "9/18/2025, 8:22:50 AM"
+    },
+    "period": {
+      "current_week_end": "2025-09-18",
+      "current_week_start": "2025-09-11",
+      "previous_week_end": "2025-09-11",
+      "previous_week_start": "2025-09-04"
+    },
+    "statistics": {
+      "failed": {
+        "is_positive": false,
+        "rate": "70.8% failure rate from last week",
+        "value": 17
+      },
+      "successful": {
+        "is_positive": true,
+        "rate": "0.0% success rate from last week",
+        "value": 7
+      }
+    },
+    "total_amount": {
+      "change": "0.0% change from last week",
+      "is_positive": true,
+      "value": "N3850.00"
+    },
+    "total_transactions": {
+      "change": "0.0% of total from last week",
+      "is_positive": true,
+      "value": 24
+    }
+  }
+}
+```
+
+## Notes
+
+- Statistics are calculated based on weekly periods
+- All monetary values are in Nigerian Naira (NGN)
+- Trends compare current week to previous week
+- Account balance is updated in real-time
+- Use this endpoint to monitor your vending performance and account status

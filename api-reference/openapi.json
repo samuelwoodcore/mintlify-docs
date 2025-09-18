@@ -7,14 +7,15 @@
   },
   "servers": [
     {
-      "url": "https://api.bleeprs.com/api/"
+      "url": "https://api.bleeprs.com/api"
     }
   ],
-
   "paths": {
     "/getSenderIds": {
       "get": {
-        "tags": ["Messages"],
+        "tags": [
+          "Messages"
+        ],
         "summary": "Sender ID",
         "description": "Sender ID",
         "operationId": "senderId",
@@ -52,7 +53,9 @@
     },
     "/sendMessage": {
       "post": {
-        "tags": ["Messages"],
+        "tags": [
+          "Messages"
+        ],
         "summary": "Send Message",
         "description": "Send Message",
         "operationId": "sendMessage",
@@ -69,7 +72,10 @@
                       "type": "string",
                       "example": "sam@bleeprs.com"
                     },
-                    "example": ["sam@bleeprs.com", "john@bleeprs.com"]
+                    "example": [
+                      "sam@bleeprs.com",
+                      "john@bleeprs.com"
+                    ]
                   },
                   "isBulk": {
                     "type": "boolean",
@@ -117,7 +123,10 @@
                           "type": "string",
                           "example": "Samuel"
                         },
-                        "example": ["Benson", "Germany"]
+                        "example": [
+                          "Benson",
+                          "Germany"
+                        ]
                       },
                       "templateId": {
                         "type": "string",
@@ -145,7 +154,9 @@
     },
     "/sendEvidence": {
       "post": {
-        "tags": ["Evidence"],
+        "tags": [
+          "Evidence"
+        ],
         "summary": "Send Evidence",
         "description": "Send Evidence",
         "operationId": "sendEvidence",
@@ -162,7 +173,9 @@
                       "type": "string",
                       "example": "sam@bleep,com"
                     },
-                    "example": ["sam@bleep,com"]
+                    "example": [
+                      "sam@bleep,com"
+                    ]
                   },
                   "numberOfDigits": {
                     "type": "number",
@@ -203,7 +216,9 @@
     },
     "/confirmEvidence": {
       "post": {
-        "tags": ["Evidence"],
+        "tags": [
+          "Evidence"
+        ],
         "summary": "Confirm Evidence",
         "description": "Confirm Evidence",
         "operationId": "confirmEvidence",
@@ -245,7 +260,9 @@
     },
     "/MSQ/{reference}": {
       "get": {
-        "tags": ["Insight"],
+        "tags": [
+          "Insight"
+        ],
         "summary": "MSQ",
         "description": "MSQ",
         "operationId": "msq",
@@ -261,7 +278,6 @@
             }
           }
         ],
-
         "responses": {
           "200": {
             "description": ""
@@ -271,7 +287,9 @@
     },
     "/messageHistory": {
       "get": {
-        "tags": ["Insight"],
+        "tags": [
+          "Insight"
+        ],
         "summary": "History",
         "description": "History",
         "operationId": "history",
@@ -302,7 +320,9 @@
     },
     "/accountBalance": {
       "get": {
-        "tags": ["Insight"],
+        "tags": [
+          "Insight"
+        ],
         "summary": "Account Balance",
         "description": "Account Balance",
         "operationId": "accountBalance",
@@ -315,7 +335,9 @@
     },
     "/getPhonebook": {
       "get": {
-        "tags": ["Phonebook"],
+        "tags": [
+          "Phonebook"
+        ],
         "summary": "Phonebook",
         "description": "Phonebook",
         "operationId": "phonebook",
@@ -346,7 +368,9 @@
     },
     "/craetePhonebook": {
       "post": {
-        "tags": ["Phonebook"],
+        "tags": [
+          "Phonebook"
+        ],
         "summary": "Create Phonebook",
         "description": "Create Phonebook",
         "operationId": "createPhonebook",
@@ -380,7 +404,9 @@
     },
     "/createContact": {
       "post": {
-        "tags": ["Phonebook"],
+        "tags": [
+          "Phonebook"
+        ],
         "summary": "Create Contacts",
         "description": "Create Contacts",
         "operationId": "createContacts",
@@ -431,7 +457,9 @@
     },
     "/getTemplates": {
       "get": {
-        "tags": ["Templates"],
+        "tags": [
+          "Templates"
+        ],
         "summary": "Templates",
         "description": "Templates",
         "operationId": "templates",
@@ -462,7 +490,9 @@
     },
     "/createTemplates": {
       "post": {
-        "tags": ["Templates"],
+        "tags": [
+          "Templates"
+        ],
         "summary": "Create Templates",
         "description": "Create Templates",
         "operationId": "createTemplates",
@@ -485,7 +515,10 @@
                       "description": "",
                       "example": "1"
                     },
-                    "example": ["1", "2"]
+                    "example": [
+                      "1",
+                      "2"
+                    ]
                   },
                   "name": {
                     "type": "string",
@@ -510,6 +543,689 @@
         "responses": {
           "200": {
             "description": ""
+          }
+        }
+      }
+    },
+    "/airtimeList": {
+      "get": {
+        "tags": [
+          "Vending"
+        ],
+        "summary": "List Airtime Networks",
+        "description": "Get all available airtime networks and their details",
+        "operationId": "airtimeList",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved airtime networks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "gatewayStatus": {
+                      "type": "string",
+                      "example": "00"
+                    },
+                    "gatewayMessage": {
+                      "type": "string",
+                      "example": "Successfully Processed"
+                    },
+                    "requestReference": {
+                      "type": "string",
+                      "example": "MA1EF7AxNWuLz2Y0Jzfw"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ID": {
+                            "type": "number"
+                          },
+                          "Network": {
+                            "type": "string"
+                          },
+                          "Operator": {
+                            "type": "string"
+                          },
+                          "Region": {
+                            "type": "string"
+                          },
+                          "MinAmount": {
+                            "type": "number"
+                          },
+                          "MaxAmount": {
+                            "type": "number"
+                          },
+                          "Percentage": {
+                            "type": "number"
+                          },
+                          "NetworkLogo": {
+                            "type": "string"
+                          },
+                          "VoucherCode": {
+                            "type": "string"
+                          },
+                          "CreatedAt": {
+                            "type": "string"
+                          },
+                          "UpdatedAt": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/purchaseAirtime": {
+      "post": {
+        "tags": [
+          "Vending"
+        ],
+        "summary": "Purchase Airtime",
+        "description": "Purchase airtime for a phone number",
+        "operationId": "purchaseAirtime",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "amount": {
+                      "type": "number",
+                      "description": "Amount of airtime to purchase (in Naira)",
+                      "example": 50
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "Recipient's phone number (Nigerian format)",
+                      "example": "08107176819"
+                    },
+                    "network": {
+                      "type": "string",
+                      "description": "Network provider",
+                      "enum": [
+                        "mtn",
+                        "airtel",
+                        "globacom",
+                        "9mobile"
+                      ],
+                      "example": "mtn"
+                    }
+                  },
+                  "required": [
+                    "amount",
+                    "phoneNumber",
+                    "network"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Airtime purchase accepted for processing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "gatewayStatus": {
+                      "type": "string",
+                      "example": "00"
+                    },
+                    "gatewayMessage": {
+                      "type": "string",
+                      "example": "Sucessfully Processed"
+                    },
+                    "requestReference": {
+                      "type": "string",
+                      "example": "JJqI1HCxemtGpMOWOESU"
+                    },
+                    "data": {
+                      "type": "string",
+                      "example": "Airtime purchased processing"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataList": {
+      "get": {
+        "tags": [
+          "Vending"
+        ],
+        "summary": "List Data Plans",
+        "description": "Get available data plans for a specific network",
+        "operationId": "dataList",
+        "parameters": [
+          {
+            "name": "network",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "globacom",
+                "airtel",
+                "mtn",
+                "9mobile"
+              ]
+            },
+            "description": "Network provider to get data plans for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved data plans",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "gatewayStatus": {
+                      "type": "string",
+                      "example": "00"
+                    },
+                    "gatewayMessage": {
+                      "type": "string",
+                      "example": "Successfully Processed"
+                    },
+                    "requestReference": {
+                      "type": "string",
+                      "example": "oodwwrNrMbP9grMPFKVW"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ID": {
+                            "type": "number"
+                          },
+                          "Network": {
+                            "type": "string"
+                          },
+                          "Operator": {
+                            "type": "string"
+                          },
+                          "ProductCode": {
+                            "type": "string"
+                          },
+                          "ProductGroup": {
+                            "type": "string"
+                          },
+                          "NetworkLogo": {
+                            "type": "string"
+                          },
+                          "VoucherCode": {
+                            "type": "string"
+                          },
+                          "Description": {
+                            "type": "string"
+                          },
+                          "DataValue": {
+                            "type": "number"
+                          },
+                          "CreatedAt": {
+                            "type": "string"
+                          },
+                          "UpdatedAt": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/purchaseData": {
+      "post": {
+        "tags": [
+          "Vending"
+        ],
+        "summary": "Purchase Data",
+        "description": "Purchase data bundle for a phone number",
+        "operationId": "purchaseData",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "Recipient's phone number (Nigerian format)",
+                      "example": "08107176819"
+                    },
+                    "productCode": {
+                      "type": "string",
+                      "description": "Product code for the data plan",
+                      "example": "LV_MTN_XTRADATA_3DAYS_200_200"
+                    }
+                  },
+                  "required": [
+                    "phoneNumber",
+                    "productCode"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Data purchase accepted for processing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "gatewayStatus": {
+                      "type": "string",
+                      "example": "00"
+                    },
+                    "gatewayMessage": {
+                      "type": "string",
+                      "example": "Sucessfully Processed"
+                    },
+                    "requestReference": {
+                      "type": "string",
+                      "example": "KpEAFZutv3SvQ4aMjrv7"
+                    },
+                    "data": {
+                      "type": "string",
+                      "example": "Data purchased processing"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/statistics": {
+      "get": {
+        "tags": [
+          "Vending"
+        ],
+        "summary": "View Statistics",
+        "description": "Get vending statistics and account information",
+        "operationId": "statistics",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "gatewayStatus": {
+                      "type": "string",
+                      "example": "00"
+                    },
+                    "gatewayMessage": {
+                      "type": "string",
+                      "example": "Successfully Processed"
+                    },
+                    "requestReference": {
+                      "type": "string",
+                      "example": "ESzHw13F3Xa93uizdop6"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "account_balance": {
+                          "type": "object",
+                          "properties": {
+                            "amount": {
+                              "type": "string",
+                              "example": "N7450.00"
+                            },
+                            "available_for": {
+                              "type": "string",
+                              "example": "vending"
+                            },
+                            "currency": {
+                              "type": "string",
+                              "example": "NGN"
+                            },
+                            "last_updated": {
+                              "type": "string",
+                              "example": "9/18/2025, 8:22:50 AM"
+                            }
+                          }
+                        },
+                        "period": {
+                          "type": "object",
+                          "properties": {
+                            "current_week_start": {
+                              "type": "string",
+                              "example": "2025-09-11"
+                            },
+                            "current_week_end": {
+                              "type": "string",
+                              "example": "2025-09-18"
+                            },
+                            "previous_week_start": {
+                              "type": "string",
+                              "example": "2025-09-04"
+                            },
+                            "previous_week_end": {
+                              "type": "string",
+                              "example": "2025-09-11"
+                            }
+                          }
+                        },
+                        "statistics": {
+                          "type": "object",
+                          "properties": {
+                            "successful": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "number",
+                                  "example": 7
+                                },
+                                "rate": {
+                                  "type": "string",
+                                  "example": "0.0% success rate from last week"
+                                },
+                                "is_positive": {
+                                  "type": "boolean",
+                                  "example": true
+                                }
+                              }
+                            },
+                            "failed": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "number",
+                                  "example": 17
+                                },
+                                "rate": {
+                                  "type": "string",
+                                  "example": "70.8% failure rate from last week"
+                                },
+                                "is_positive": {
+                                  "type": "boolean",
+                                  "example": false
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "total_amount": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "string",
+                              "example": "N3850.00"
+                            },
+                            "change": {
+                              "type": "string",
+                              "example": "0.0% change from last week"
+                            },
+                            "is_positive": {
+                              "type": "boolean",
+                              "example": true
+                            }
+                          }
+                        },
+                        "total_transactions": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "number",
+                              "example": 24
+                            },
+                            "change": {
+                              "type": "string",
+                              "example": "0.0% of total from last week"
+                            },
+                            "is_positive": {
+                              "type": "boolean",
+                              "example": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logEntries": {
+      "get": {
+        "tags": [
+          "Vending"
+        ],
+        "summary": "Vending Logs",
+        "description": "View transaction logs and history",
+        "operationId": "logEntries",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "example": 0
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "example": 1
+            },
+            "description": "Number of records per page"
+          },
+          {
+            "name": "startdate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2025-09-17"
+            },
+            "description": "Start date for filtering (YYYY-MM-DD)"
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2025-09-17"
+            },
+            "description": "End date for filtering (YYYY-MM-DD)"
+          },
+          {
+            "name": "download",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "example": true
+            },
+            "description": "Whether to include download-ready format"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "success",
+                "failed"
+              ],
+              "example": "success"
+            },
+            "description": "Transaction status filter"
+          },
+          {
+            "name": "network",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "MTN",
+                "GLO",
+                "AIRTEL",
+                "9MOBILE",
+                "all"
+              ],
+              "example": "mtn"
+            },
+            "description": "Network filter"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "08107176819"
+            },
+            "description": "Search by phone number or transaction ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved transaction logs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "gatewayStatus": {
+                      "type": "string",
+                      "example": "00"
+                    },
+                    "gatewayMessage": {
+                      "type": "string",
+                      "example": "Sucessfully Processed"
+                    },
+                    "requestReference": {
+                      "type": "string",
+                      "example": "iip9r710KslnmtdAgb1w"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "TotalPages": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "CurrentPage": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "TotalRecords": {
+                          "type": "number",
+                          "example": 7
+                        },
+                        "NextPage": {
+                          "type": "string",
+                          "example": ""
+                        },
+                        "PreviousPage": {
+                          "type": "string",
+                          "example": ""
+                        },
+                        "Items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "transaction_id": {
+                                "type": "string"
+                              },
+                              "partner_reference": {
+                                "type": "string"
+                              },
+                              "phone_number": {
+                                "type": "string"
+                              },
+                              "amount": {
+                                "type": "string"
+                              },
+                              "transaction_cost": {
+                                "type": "number"
+                              },
+                              "commission": {
+                                "type": "number"
+                              },
+                              "balance_after": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "network": {
+                                "type": "string"
+                              },
+                              "operator": {
+                                "type": "string"
+                              },
+                              "region": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "data_plan": {
+                                "type": "string"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "time": {
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

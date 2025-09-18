@@ -1,0 +1,84 @@
+---
+title: "Purchase Data"
+api: "POST /purchaseData"
+description: "Purchase data bundle for a phone number"
+---
+
+## Overview
+
+Purchase a data bundle for any Nigerian phone number using a specific product code. The data will be credited instantly to the recipient's phone.
+
+## Request
+
+<RequestExample>
+```bash
+curl --location 'https://api.bleeprs.com/api/purchaseData' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR_API_KEY' \
+--data '[
+  {
+    "phoneNumber": "08107176819",
+    "productCode": "LV_MTN_XTRADATA_3DAYS_200_200"
+  }
+]'
+```
+</RequestExample>
+
+## Request Body
+
+<RequestField name="phoneNumber" type="string" required>
+  Recipient's phone number (Nigerian format)
+</RequestField>
+
+<RequestField name="productCode" type="string" required>
+  Product code for the data plan (obtained from List Data Plans endpoint)
+</RequestField>
+
+## Response
+
+<ResponseField name="gatewayStatus" type="string">
+  Status code indicating success ("00") or error
+</ResponseField>
+
+<ResponseField name="gatewayMessage" type="string">
+  Human-readable status message
+</ResponseField>
+
+<ResponseField name="requestReference" type="string">
+  Unique reference ID for tracking this transaction
+</ResponseField>
+
+<ResponseField name="data" type="string">
+  Status message about the data purchase
+</ResponseField>
+
+## Example Response
+
+```json
+{
+  "gatewayStatus": "00",
+  "gatewayMessage": "Sucessfully Processed",
+  "requestReference": "KpEAFZutv3SvQ4aMjrv7",
+  "data": "Data purchased processing"
+}
+```
+
+## How to Use
+
+1. **Get Available Plans**: First, call the [List Data Plans](/api-reference/endpoint/datalist) endpoint to see available data plans for a specific network
+2. **Select Product Code**: Choose the desired data plan and note its `ProductCode`
+3. **Purchase Data**: Use the `ProductCode` in this endpoint to purchase the data bundle
+
+## Example Product Codes
+
+- `LV_MTN_XTRADATA_3DAYS_200_200` - MTN 200MB for 3 days
+- `LV_GLOBACOM_DATA_14DAYS_1800MB_500` - Glo 1.8GB for 14 days
+- `LV_AIRTEL_DATA_1DAY_1GB_300` - Airtel 1GB for 1 day
+
+## Notes
+
+- Data is credited instantly to the recipient's phone
+- Phone numbers should be in Nigerian format (e.g., 08107176819)
+- Product codes are case-sensitive
+- Transaction processing may take a few seconds
+- Ensure the phone number is on the correct network for the data plan

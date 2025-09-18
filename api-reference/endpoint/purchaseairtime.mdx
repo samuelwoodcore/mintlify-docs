@@ -1,0 +1,84 @@
+---
+title: "Purchase Airtime"
+api: "POST /purchaseAirtime"
+description: "Purchase airtime for a phone number"
+---
+
+## Overview
+
+Purchase airtime for any Nigerian phone number on supported networks. The airtime will be credited instantly to the recipient's phone.
+
+## Request
+
+<RequestExample>
+```bash
+curl --location 'https://api.bleeprs.com/api/purchaseAirtime' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR_API_KEY' \
+--data '[
+  {
+    "amount": 50,
+    "phoneNumber": "08107176819",
+    "network": "mtn"
+  }
+]'
+```
+</RequestExample>
+
+## Request Body
+
+<RequestField name="amount" type="number" required>
+  Amount of airtime to purchase (in Naira)
+</RequestField>
+
+<RequestField name="phoneNumber" type="string" required>
+  Recipient's phone number (Nigerian format)
+</RequestField>
+
+<RequestField name="network" type="string" required>
+  Network provider (mtn, airtel, globacom, 9mobile)
+</RequestField>
+
+## Response
+
+<ResponseField name="gatewayStatus" type="string">
+  Status code indicating success ("00") or error
+</ResponseField>
+
+<ResponseField name="gatewayMessage" type="string">
+  Human-readable status message
+</ResponseField>
+
+<ResponseField name="requestReference" type="string">
+  Unique reference ID for tracking this transaction
+</ResponseField>
+
+<ResponseField name="data" type="string">
+  Status message about the airtime purchase
+</ResponseField>
+
+## Example Response
+
+```json
+{
+  "gatewayStatus": "00",
+  "gatewayMessage": "Sucessfully Processed",
+  "requestReference": "JJqI1HCxemtGpMOWOESU",
+  "data": "Airtime purchased processing"
+}
+```
+
+## Supported Networks
+
+- **mtn** - MTN Nigeria
+- **airtel** - Airtel Nigeria  
+- **globacom** - Glo Nigeria
+- **9mobile** - 9mobile Nigeria
+
+## Notes
+
+- Airtime is credited instantly to the recipient's phone
+- Minimum purchase amount is ₦10
+- Maximum purchase amount varies by network (typically ₦30,000)
+- Phone numbers should be in Nigerian format (e.g., 08107176819)
+- Transaction processing may take a few seconds

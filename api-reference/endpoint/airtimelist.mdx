@@ -1,0 +1,150 @@
+---
+title: "List Airtime Networks"
+api: "GET /airtimeList"
+description: "Get all available airtime networks and their details"
+---
+
+## Overview
+
+Retrieve a list of all available airtime networks with their pricing, limits, and other relevant information.
+
+## Request
+
+<RequestExample>
+```bash
+curl --location 'https://api.bleeprs.com/api/airtimeList' \
+--header 'Authorization: Bearer YOUR_API_KEY'
+```
+</RequestExample>
+
+## Parameters
+
+No parameters required for this endpoint.
+
+## Response
+
+<ResponseField name="gatewayStatus" type="string">
+  Status code indicating success ("00") or error
+</ResponseField>
+
+<ResponseField name="gatewayMessage" type="string">
+  Human-readable status message
+</ResponseField>
+
+<ResponseField name="requestReference" type="string">
+  Unique reference ID for tracking this request
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Array of available airtime networks
+</ResponseField>
+
+### Data Object Fields
+
+<ResponseField name="ID" type="number">
+  Unique identifier for the network
+</ResponseField>
+
+<ResponseField name="Network" type="string">
+  Network name (e.g., "MTN", "AIRTEL", "GLOBACOM", "9MOBILE")
+</ResponseField>
+
+<ResponseField name="Operator" type="string">
+  Operator type (e.g., "AIRTIME")
+</ResponseField>
+
+<ResponseField name="Region" type="string">
+  Geographic region (e.g., "MTN", "AIRTEL")
+</ResponseField>
+
+<ResponseField name="MinAmount" type="number">
+  Minimum airtime amount that can be purchased
+</ResponseField>
+
+<ResponseField name="MaxAmount" type="number">
+  Maximum airtime amount that can be purchased
+</ResponseField>
+
+<ResponseField name="Percentage" type="number">
+  Commission percentage for this network
+</ResponseField>
+
+<ResponseField name="NetworkLogo" type="string">
+  Network logo identifier
+</ResponseField>
+
+<ResponseField name="VoucherCode" type="string">
+  Voucher code for this network (e.g., "LA_MTN")
+</ResponseField>
+
+<ResponseField name="CreatedAt" type="string">
+  Timestamp when the network was added
+</ResponseField>
+
+<ResponseField name="UpdatedAt" type="string">
+  Timestamp when the network was last updated
+</ResponseField>
+
+## Example Response
+
+```json
+{
+  "gatewayStatus": "00",
+  "gatewayMessage": "Successfully Processed",
+  "requestReference": "MA1EF7AxNWuLz2Y0Jzfw",
+  "data": [
+    {
+      "ID": 9,
+      "Network": "9MOBILE",
+      "Operator": "AIRTIME",
+      "Region": "9MOBILE",
+      "MinAmount": 10,
+      "MaxAmount": 30000,
+      "Percentage": 4,
+      "NetworkLogo": "9MOBILE",
+      "VoucherCode": "LA_9MOBILE",
+      "CreatedAt": "2025-09-17T16:40:27.896462Z",
+      "UpdatedAt": "2025-09-17T16:40:27.896462Z"
+    },
+    {
+      "ID": 10,
+      "Network": "AIRTEL",
+      "Operator": "AIRTIME",
+      "Region": "AIRTEL",
+      "MinAmount": 10,
+      "MaxAmount": 30000,
+      "Percentage": 3,
+      "NetworkLogo": "AIRTEL",
+      "VoucherCode": "LA_AIRTEL",
+      "CreatedAt": "2025-09-17T16:40:27.899724Z",
+      "UpdatedAt": "2025-09-17T16:40:27.899724Z"
+    },
+    {
+      "ID": 11,
+      "Network": "GLOBACOM",
+      "Operator": "AIRTIME",
+      "Region": "GLOBACOM",
+      "MinAmount": 10,
+      "MaxAmount": 30000,
+      "Percentage": 2,
+      "NetworkLogo": "GLOBACOM",
+      "VoucherCode": "LA_GLOBACOM",
+      "CreatedAt": "2025-09-17T16:40:27.900359Z",
+      "UpdatedAt": "2025-09-17T16:40:27.900359Z"
+    },
+    {
+      "ID": 12,
+      "Network": "MTN",
+      "Operator": "AIRTIME",
+      "Region": "MTN",
+      "MinAmount": 10,
+      "MaxAmount": 30000,
+      "Percentage": 1,
+      "NetworkLogo": "MTN",
+      "VoucherCode": "LA_MTN",
+      "CreatedAt": "2025-09-17T16:40:27.900783Z",
+      "UpdatedAt": "2025-09-17T16:40:27.900783Z"
+    }
+  ]
+}
+```

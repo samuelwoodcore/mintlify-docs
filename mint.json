@@ -42,7 +42,6 @@
     "name": "Dashboard",
     "url": "https://app.bleeprs.com"
   },
-
   "anchors": [
     {
       "name": "Community",
@@ -58,7 +57,12 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "authentication", "webhook", "product"]
+      "pages": [
+        "introduction",
+        "authentication",
+        "webhook",
+        "product"
+      ]
     },
     {
       "group": "Messaging",
@@ -95,6 +99,18 @@
       "pages": [
         "api-reference/endpoint/gettemplate",
         "api-reference/endpoint/createtemplate"
+      ]
+    },
+    {
+      "group": "Vending",
+      "pages": [
+        "vending",
+        "api-reference/endpoint/airtimelist",
+        "api-reference/endpoint/purchaseairtime",
+        "api-reference/endpoint/datalist",
+        "api-reference/endpoint/purchasedata",
+        "api-reference/endpoint/vendingstatistics",
+        "api-reference/endpoint/vendinglogs"
       ]
     }
   ],

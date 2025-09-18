@@ -1,0 +1,140 @@
+---
+title: "Vending"
+icon: "wifi"
+description: "Purchase airtime and data bundles for Nigeria. Kenya support coming soon."
+---
+
+## Overview
+
+Our Vending API allows you to purchase airtime and data bundles for mobile networks. Currently, we support Nigeria with airtime and data vending services, with Kenya support coming soon.
+
+## Supported Services
+
+<CardGroup cols={2}>
+  <Card title="Airtime Vending" icon="phone">
+    - Purchase airtime for all major Nigerian networks
+    - Real-time airtime top-up
+    - Instant delivery to recipient phone numbers
+  </Card>
+  <Card title="Data Vending" icon="wifi">
+    - Purchase data bundles for all major Nigerian networks
+    - Various data plans with different validity periods
+    - Flexible data amounts and durations
+  </Card>
+</CardGroup>
+
+## Supported Networks
+
+<CardGroup cols={2}>
+  <Card title="MTN" icon="signal">
+    Nigeria's largest mobile network
+    <br />
+    <em>Most Popular</em>
+  </Card>
+  <Card title="Airtel" icon="signal">
+    Major Nigerian mobile network
+    <br />
+    <em>Reliable</em>
+  </Card>
+  <Card title="Globacom (Glo)" icon="signal">
+    Leading Nigerian mobile network
+    <br />
+    <em>Fast</em>
+  </Card>
+  <Card title="9mobile" icon="signal">
+    Nigerian mobile network
+    <br />
+    <em>Affordable</em>
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+<Steps>
+  <Step title="List Available Networks">
+    Get all supported airtime networks and their details
+    
+    ```bash
+    GET /airtimeList
+    ```
+  </Step>
+  <Step title="Purchase Airtime">
+    Buy airtime for any phone number on supported networks
+    
+    ```bash
+    POST /purchaseAirtime
+    ```
+  </Step>
+  <Step title="List Data Plans">
+    Browse available data bundles by network
+    
+    ```bash
+    GET /dataList?network=mtn
+    ```
+  </Step>
+  <Step title="Purchase Data">
+    Buy data bundles for any phone number
+    
+    ```bash
+    POST /purchaseData
+    ```
+  </Step>
+  <Step title="View Statistics">
+    Monitor your vending performance and account balance
+    
+    ```bash
+    GET /statistics
+    ```
+  </Step>
+  <Step title="Check Logs">
+    Review transaction history and status
+    
+    ```bash
+    GET /logEntries
+    ```
+  </Step>
+</Steps>
+
+## Authentication
+
+<Warning>
+All vending endpoints require authentication using your API key. Include your API key in the `Authorization` header.
+</Warning>
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Base URL
+
+<Info>
+All vending endpoints are available at the following base URL:
+</Info>
+
+```bash
+https://api.bleeprs.com/api
+```
+
+## Response Format
+
+<Info>
+All vending endpoints return responses in a consistent JSON format:
+</Info>
+
+```json
+{
+  "gatewayStatus": "00",
+  "gatewayMessage": "Successfully Processed",
+  "requestReference": "UNIQUE_REFERENCE_ID",
+  "data": "Response data or message"
+}
+```
+
+<AccordionGroup>
+  <Accordion title="Response Fields">
+    - **`gatewayStatus`**: "00" indicates success, other values indicate errors
+    - **`gatewayMessage`**: Human-readable status message
+    - **`requestReference`**: Unique identifier for tracking the request
+    - **`data`**: Contains the actual response data or status message
+  </Accordion>
+</AccordionGroup>

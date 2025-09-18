@@ -1,0 +1,153 @@
+---
+title: "List Data Plans"
+api: "GET /dataList"
+description: "Get available data plans for a specific network"
+---
+
+## Overview
+
+Retrieve a list of available data plans for a specific network. This endpoint allows you to browse all data bundles offered by each network provider.
+
+## Request
+
+<RequestExample>
+```bash
+curl --location 'https://api.bleeprs.com/api/dataList?network=globacom' \
+--header 'Authorization: Bearer YOUR_API_KEY'
+```
+</RequestExample>
+
+## Parameters
+
+<RequestField name="network" type="string" required>
+  Network provider to get data plans for. Options: `globacom`, `airtel`, `mtn`, `9mobile`
+</RequestField>
+
+## Response
+
+<ResponseField name="gatewayStatus" type="string">
+  Status code indicating success ("00") or error
+</ResponseField>
+
+<ResponseField name="gatewayMessage" type="string">
+  Human-readable status message
+</ResponseField>
+
+<ResponseField name="requestReference" type="string">
+  Unique reference ID for tracking this request
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Array of available data plans
+</ResponseField>
+
+### Data Plan Object Fields
+
+<ResponseField name="ID" type="number">
+  Unique identifier for the data plan
+</ResponseField>
+
+<ResponseField name="Network" type="string">
+  Network name (e.g., "GLOBACOM", "MTN", "AIRTEL")
+</ResponseField>
+
+<ResponseField name="Operator" type="string">
+  Operator name (e.g., "GLOBACOM")
+</ResponseField>
+
+<ResponseField name="ProductCode" type="string">
+  Unique product code for this data plan
+</ResponseField>
+
+<ResponseField name="ProductGroup" type="string">
+  Product category (e.g., "DATA")
+</ResponseField>
+
+<ResponseField name="NetworkLogo" type="string">
+  Network logo identifier
+</ResponseField>
+
+<ResponseField name="VoucherCode" type="string">
+  Voucher code for this data plan
+</ResponseField>
+
+<ResponseField name="Description" type="string">
+  Human-readable description of the data plan
+</ResponseField>
+
+<ResponseField name="DataValue" type="number">
+  Cost of the data plan in Naira
+</ResponseField>
+
+<ResponseField name="CreatedAt" type="string">
+  Timestamp when the plan was added
+</ResponseField>
+
+<ResponseField name="UpdatedAt" type="string">
+  Timestamp when the plan was last updated
+</ResponseField>
+
+## Example Response
+
+```json
+{
+  "gatewayStatus": "00",
+  "gatewayMessage": "Successfully Processed",
+  "requestReference": "oodwwrNrMbP9grMPFKVW",
+  "data": [
+    {
+      "ID": 275,
+      "Network": "GLOBACOM",
+      "Operator": "GLOBACOM",
+      "ProductCode": "LV_GLOBACOM_DATA_14DAYS_1800MB_500",
+      "ProductGroup": "DATA",
+      "NetworkLogo": "GLOBACOM",
+      "VoucherCode": "LV_GLOBACOM",
+      "Description": "1.8GB 14 Days",
+      "DataValue": 500,
+      "CreatedAt": "2025-09-17T18:07:59.785969Z",
+      "UpdatedAt": "2025-09-17T18:07:59.785969Z"
+    },
+    {
+      "ID": 276,
+      "Network": "GLOBACOM",
+      "Operator": "GLOBACOM",
+      "ProductCode": "LV_GLOBACOM_DATA_1DAY_1GB_300",
+      "ProductGroup": "DATA",
+      "NetworkLogo": "GLOBACOM",
+      "VoucherCode": "LV_GLOBACOM",
+      "Description": "Special_Plan 1024MB 1 Day",
+      "DataValue": 300,
+      "CreatedAt": "2025-09-17T18:07:59.785969Z",
+      "UpdatedAt": "2025-09-17T18:07:59.785969Z"
+    },
+    {
+      "ID": 277,
+      "Network": "GLOBACOM",
+      "Operator": "GLOBACOM",
+      "ProductCode": "LV_GLOBACOM_DATA_1DAY_50MB_50",
+      "ProductGroup": "DATA",
+      "NetworkLogo": "GLOBACOM",
+      "VoucherCode": "LV_GLOBACOM",
+      "Description": "50MB 1 Day",
+      "DataValue": 50,
+      "CreatedAt": "2025-09-17T18:07:59.785969Z",
+      "UpdatedAt": "2025-09-17T18:07:59.785969Z"
+    }
+  ]
+}
+```
+
+## Supported Networks
+
+- **globacom** - Glo Nigeria data plans
+- **airtel** - Airtel Nigeria data plans
+- **mtn** - MTN Nigeria data plans
+- **9mobile** - 9mobile Nigeria data plans
+
+## Notes
+
+- Data plans vary by network and are updated regularly
+- Use the `ProductCode` from the response when purchasing data
+- `DataValue` represents the cost in Naira
+- Descriptions include data amount and validity period

@@ -1,0 +1,238 @@
+---
+title: "Vending Logs"
+api: "GET /logEntries"
+description: "View transaction logs and history"
+---
+
+## Overview
+
+Retrieve detailed transaction logs for your vending activities. Filter by status, network, date range, and search by phone number or transaction ID.
+
+## Request
+
+<RequestExample>
+```bash
+curl --location 'https://api.bleeprs.com/api/logEntries?status=success&network=mtn&search=08107176819&startdate=2025-09-17&enddate=2025-09-17&page=0&perPage=1&download=true' \
+--header 'Authorization: Bearer YOUR_API_KEY'
+```
+</RequestExample>
+
+## Parameters
+
+<RequestField name="page" type="number">
+  Page number for pagination (default: 0)
+</RequestField>
+
+<RequestField name="perPage" type="number">
+  Number of records per page (default: 10)
+</RequestField>
+
+<RequestField name="startdate" type="string">
+  Start date for filtering (format: YYYY-MM-DD)
+</RequestField>
+
+<RequestField name="enddate" type="string">
+  End date for filtering (format: YYYY-MM-DD)
+</RequestField>
+
+<RequestField name="download" type="boolean">
+  Whether to include download-ready format
+</RequestField>
+
+<RequestField name="status" type="string">
+  Transaction status filter. Options: `success`, `failed`
+</RequestField>
+
+<RequestField name="network" type="string">
+  Network filter. Options: `MTN`, `GLO`, `AIRTEL`, `9MOBILE`, `all`
+</RequestField>
+
+<RequestField name="search" type="string">
+  Search by phone number or transaction ID
+</RequestField>
+
+## Response
+
+<ResponseField name="gatewayStatus" type="string">
+  Status code indicating success ("00") or error
+</ResponseField>
+
+<ResponseField name="gatewayMessage" type="string">
+  Human-readable status message
+</ResponseField>
+
+<ResponseField name="requestReference" type="string">
+  Unique reference ID for tracking this request
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Paginated transaction logs
+</ResponseField>
+
+### Data Object Fields
+
+<ResponseField name="TotalPages" type="number">
+  Total number of pages available
+</ResponseField>
+
+<ResponseField name="CurrentPage" type="number">
+  Current page number
+</ResponseField>
+
+<ResponseField name="TotalRecords" type="number">
+  Total number of records matching the filter
+</ResponseField>
+
+<ResponseField name="NextPage" type="string">
+  URL for next page (empty if no next page)
+</ResponseField>
+
+<ResponseField name="PreviousPage" type="string">
+  URL for previous page (empty if no previous page)
+</ResponseField>
+
+<ResponseField name="Items" type="array">
+  Array of transaction log entries
+</ResponseField>
+
+### Transaction Log Entry Fields
+
+<ResponseField name="id" type="number">
+  Unique transaction ID
+</ResponseField>
+
+<ResponseField name="transaction_id" type="string">
+  External transaction reference
+</ResponseField>
+
+<ResponseField name="partner_reference" type="string">
+  Partner reference number
+</ResponseField>
+
+<ResponseField name="phone_number" type="string">
+  Recipient phone number
+</ResponseField>
+
+<ResponseField name="amount" type="string">
+  Transaction amount (e.g., "N200.00")
+</ResponseField>
+
+<ResponseField name="transaction_cost" type="number">
+  Actual cost charged
+</ResponseField>
+
+<ResponseField name="commission" type="number">
+  Commission earned
+</ResponseField>
+
+<ResponseField name="balance_after" type="number">
+  Account balance after transaction
+</ResponseField>
+
+<ResponseField name="type" type="string">
+  Transaction type (AIRTIME, DATA)
+</ResponseField>
+
+<ResponseField name="network" type="string">
+  Network provider (MTN, GLOBACOM, etc.)
+</ResponseField>
+
+<ResponseField name="operator" type="string">
+  Operator name
+</ResponseField>
+
+<ResponseField name="region" type="string">
+  Geographic region
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Transaction description
+</ResponseField>
+
+<ResponseField name="data_plan" type="string">
+  Data plan product code (for data transactions)
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Transaction status (SUCCESS, FAILED)
+</ResponseField>
+
+<ResponseField name="time" type="string">
+  Human-readable transaction time
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  Transaction creation timestamp
+</ResponseField>
+
+<ResponseField name="updated_at" type="string">
+  Last update timestamp
+</ResponseField>
+
+## Example Response
+
+```json
+{
+  "gatewayStatus": "00",
+  "gatewayMessage": "Sucessfully Processed",
+  "requestReference": "iip9r710KslnmtdAgb1w",
+  "data": {
+    "TotalPages": 1,
+    "CurrentPage": 1,
+    "TotalRecords": 7,
+    "NextPage": "",
+    "PreviousPage": "",
+    "Items": [
+      {
+        "amount": "N200.00",
+        "balance_after": 4455.5,
+        "commission": 2,
+        "created_at": "2025-09-18T08:21:34.530768Z",
+        "data_plan": "LV_MTN_XTRADATA_3DAYS_200_200",
+        "description": "LV_MTN",
+        "id": 25,
+        "network": "MTN",
+        "operator": "",
+        "partner_reference": "REFQ000339",
+        "phone_number": "08107176819",
+        "region": "MTN",
+        "status": "SUCCESS",
+        "time": "9/18/2025",
+        "transaction_cost": 198,
+        "transaction_id": "REFQ000339",
+        "type": "DATA",
+        "updated_at": "2025-09-18T08:21:34.530768Z"
+      },
+      {
+        "amount": "N50.00",
+        "balance_after": 4653.5,
+        "commission": 0.5,
+        "created_at": "2025-09-18T08:20:59.867764Z",
+        "data_plan": "MTN",
+        "description": "LA_MTN",
+        "id": 24,
+        "network": "MTN",
+        "operator": "",
+        "partner_reference": "REFQ000178667",
+        "phone_number": "08107176819",
+        "region": "MTN",
+        "status": "SUCCESS",
+        "time": "9/18/2025",
+        "transaction_cost": 49.5,
+        "transaction_id": "REFQ000178667",
+        "type": "AIRTIME",
+        "updated_at": "2025-09-18T08:20:59.867764Z"
+      }
+    ]
+  }
+}
+```
+
+## Notes
+
+- Use pagination parameters to navigate through large result sets
+- Date filters are inclusive of both start and end dates
+- Search functionality works with partial phone numbers or transaction IDs
+- All timestamps are in UTC format
+- Commission amounts are in Naira
+- Use this endpoint to track transaction history and troubleshoot issues
