@@ -555,6 +555,11 @@
         "summary": "List Airtime Networks",
         "description": "Get all available airtime networks and their details",
         "operationId": "airtimeList",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successfully retrieved airtime networks",
@@ -632,6 +637,11 @@
         "summary": "Purchase Airtime",
         "description": "Purchase airtime for a phone number",
         "operationId": "purchaseAirtime",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -712,6 +722,11 @@
         "summary": "List Data Plans",
         "description": "Get available data plans for a specific network",
         "operationId": "dataList",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "network",
@@ -806,6 +821,11 @@
         "summary": "Purchase Data",
         "description": "Purchase data bundle for a phone number",
         "operationId": "purchaseData",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -874,6 +894,11 @@
         "summary": "View Statistics",
         "description": "Get vending statistics and account information",
         "operationId": "statistics",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successfully retrieved statistics",
@@ -1030,6 +1055,11 @@
         "summary": "Vending Logs",
         "description": "View transaction logs and history",
         "operationId": "logEntries",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "page",
